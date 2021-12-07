@@ -8,6 +8,8 @@ Valorant Stats Tracker Discord Bot
 
 3. Use `!stats {username#tag}` to get your Valorant stats!
 
+![stats](https://github.com/shaheriar/VALWATCH/blob/main/stats.png)
+
 ## Reporting bugs
 Please use the Issues tab to report any bugs.
 
