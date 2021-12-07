@@ -11,7 +11,7 @@ bot = commands.Bot(command_prefix='!')
 
 @bot.event
 async def on_ready():
-    game = discord.Game("!help")
+    game = discord.Game("!stats {username#tag}")
     await bot.change_presence(activity=game)
     for guild in bot.guilds:
         print(f'{client.user} is connected to the following guild:\n{guild.name}(id: {guild.id})\n')
