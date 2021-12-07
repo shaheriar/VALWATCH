@@ -25,7 +25,7 @@ def valstats(ctx):
     rank = soup.find_all('span', class_='valorant-highlighted-stat__value')[0].text
     label = soup.find_all('span', class_='valorant-highlighted-stat__label')[0].text
     if (rank[-1] == 'R'):
-        embed.add_field(name='Rank', value=label + ' ' + rank, inline=False)
+        embed.add_field(name='Rank', value=label + ' - ' + rank, inline=False)
         if (label == 'Radiant'):
             color = colors[-1]
         else:
