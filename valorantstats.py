@@ -96,5 +96,6 @@ def valstats(ctx):
                 embed.add_field(name=list[cnt], value=str(i.text), inline=True)
                 cnt+=1
         return embed
-    except:
+    except Exception as e:
+        print(e)
         return discord.Embed(title='Error',description='Please make sure to:\n\n1) Link your Riot ID on TRN at https://thetrackernetwork.com/manage/social\n2) Make your TRN account public\n3) Play at least one competitive match this act\n\nIf you have done all of the above and are still facing an issue please report it at https://github.com/shaheriar/VALWATCH/issues and I will get to it ASAP. Thank you! :)')
