@@ -98,4 +98,5 @@ def valstats(ctx):
         return embed
     except Exception as e:
         print(e)
-        return discord.Embed(title='Error',description='Please make sure to:\n\n1) Link your Riot ID on TRN at https://thetrackernetwork.com/manage/social\n2) Make your TRN account public\n3) Play at least one competitive match this act\n\nIf you have done all of the above and are still facing an issue please report it at https://github.com/shaheriar/VALWATCH/issues and I will get to it ASAP. Thank you! :)')
+        return discord.Embed(title='Error',description='This bot uses Tracker.GG to get the data about player stats. It seems like Tracker.GG does not want web scraping to be done on their website which is why they are performiing a crackdown on all web scraping bots. I will try to find a different way to get player data but for now this bot is out of commission.')
+        #return discord.Embed(title='Error',description='Please make sure to:\n\n1) Link your Riot ID on TRN at https://thetrackernetwork.com/manage/social\n2) Make your TRN account public\n3) Play at least one competitive match this act\n\nIf you have done all of the above and are still facing an issue please report it at https://github.com/shaheriar/VALWATCH/issues and I will get to it ASAP. Thank you! :)')
