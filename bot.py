@@ -25,4 +25,8 @@ async def on_ready():
 async def stat(ctx):
     await ctx.send(embed=valorantstats.valstats(ctx))
 
+@bot.command(name='info')
+async def info(ctx):
+    await ctx.send(embed=discord.Embed(title="VALWATCH", description="A Discord bot that displays your Valorant stats.\n\nInvite this bot to your server or report any bugs using this link: https://github.com/shaheriar/VALWATCH", color=discord.Colour.red()))
+
 bot.run(TOKEN)
