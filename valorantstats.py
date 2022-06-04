@@ -1,5 +1,4 @@
 from discord.colour import Colour
-import traceback
 import requests
 from bs4 import BeautifulSoup
 import discord
@@ -24,8 +23,8 @@ def valstats(ctx):
         color = 0
 
         #RANK
-        rank = soup.find_all('span', class_='stat__value')[0].text
-        label = soup.find_all('span', class_='stat__label')[0].text
+        rank = soup.find_all('span', class_='valorant-highlighted-stat__value')[0].text
+        label = soup.find_all('span', class_='valorant-highlighted-stat__label')[0].text
         if (rank[-1] == 'R'):
             embed.add_field(name='Rank', value=label + ' - ' + rank, inline=False)
             if (label == 'Radiant'):
@@ -52,8 +51,10 @@ def valstats(ctx):
         giantstats = ['Damage/Round','K/D Ratio','Headshot %','Win %']
         gstats = soup.find_all('div', class_='giant-stats')
 
+        agents = soup.find_all('div',class_='top-agents area-top-agents')
+
         #KAD
-        kad = soup.find_all('span', class_='stat__value')[1].text
+        kad = soup.find_all('span', class_='valorant-highlighted-stat__value')[1].text
         if (rank[-1] == 'R'):
             embed.add_field(name='Position', value=kad, inline=False)
         else:
@@ -61,7 +62,7 @@ def valstats(ctx):
 
         stats = soup.find_all('div', class_='main')
         list = ['Wins','Kills','Headshots','Deaths','Assists','Score/Round','Kills/Round','First Bloods','Aces','Clutches','Flawless','Most Kills (Match)']
-        img = soup.find('div',class_='trn-profile-highlighted-content__stats')
+        img = soup.find('div',class_='valorant-highlighted-content__stats')
         img = img.find('img')
         print(img['src'])
         
@@ -72,8 +73,21 @@ def valstats(ctx):
         for i in z:
             embed.add_field(name=giantstats[cnt], value=str(i.text), inline=True)
             cnt+=1
+        
+        topagent = ''
+        for i in agents:
+            topagent = i.find('span',class_='agent__name').text
+        
+        agenturl = 'https://valorant-api.com/v1/agents'
+        agentjson = requests.get(agenturl).json()
+
+        agentpicture = ''
+        for i in agentjson['data']:
+            if (i['displayName'] == topagent):
+                agentpicture = i["displayIcon"]
 
         embed.set_thumbnail(url=img['src'])
+        embed.set_image(url=agentpicture)
 
         for y in stats:
             z = y.find_all('span',class_='value')
@@ -82,6 +96,7 @@ def valstats(ctx):
                 embed.add_field(name=list[cnt], value=str(i.text), inline=True)
                 cnt+=1
         return embed
-    except:
-        traceback.print_exc()
-        return discord.Embed(title='Error',description='Please make sure to:\n\n1) Link your Riot ID on TRN at https://thetrackernetwork.com/manage/social\n2) Make your TRN account public\n3) Play at least one competitive match this act\n\nIf you have done all of the above and are still facing an issue please report it at https://github.com/shaheriar/VALWATCH/issues and I will get to it ASAP. Thank you! :)')
+    except Exception as e:
+        print(e)
+        return discord.Embed(title='Error',description='This bot uses Tracker.GG to get the data about player stats. It seems like Tracker.GG does not want web scraping to be done on their website which is why they are performiing a crackdown on all web scraping bots. I will try to find a different way to get player data but for now this bot is out of commission.')
+        #return discord.Embed(title='Error',description='Please make sure to:\n\n1) Link your Riot ID on TRN at https://thetrackernetwork.com/manage/social\n2) Make your TRN account public\n3) Play at least one competitive match this act\n\nIf you have done all of the above and are still facing an issue please report it at https://github.com/shaheriar/VALWATCH/issues and I will get to it ASAP. Thank you! :)')
