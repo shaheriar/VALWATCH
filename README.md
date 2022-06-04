@@ -2,7 +2,7 @@
 Valorant Stats Tracker Discord Bot
 
 ## Usage
-1. [Invite](https://discord.com/api/oauth2/authorize?client_id=917712768839319572&permissions=2048&scope=bot) the bot to your server!
+1. [Invite](https://discord.com/api/oauth2/authorize?client_id=917712768839319572&permissions=0&scope=bot) the bot to your server!
  
 2. [Link](https://thetrackernetwork.com/manage/social) your Riot ID to tracker.gg
 
